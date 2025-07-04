@@ -35,7 +35,7 @@ public:
 	void onExit() override;
 	static std::string pathToString(const std::filesystem::path& path) {
         #ifdef GEODE_IS_WINDOWS
-		return utils::string::wideToUtf8(path.wstring());
+		return geode::utils::string::wideToUtf8(path.wstring());
         #else
 		return path.string();
         #endif
