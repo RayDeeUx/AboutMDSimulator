@@ -1,0 +1,51 @@
+{
+	"geode": "4.4.0",
+	"gd": {
+		"win": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074",
+		"android": "2.2074"
+	},
+	"id": "raydeeux.aboutmdsimulator",
+	"name": "AboutMDSimulator",
+	"version": "v0.0.1-alpha.1",
+	"developer": "RayDeeUx",
+	"description": "Preview Markdown files for your mods without recompiling them!",
+	"repository": "https://github.com/RayDeeUx/AboutMDSimulator",
+	"settings": {
+		"aboutMDFile": {
+			"name": "About.md File",
+			"type": "file",
+			"default": "",
+			"control": {
+				"dialog": "open",
+				"filters": [
+					{
+						"files": ["*.md"],
+						"description": "Markdown file"
+					}
+				]
+			}
+		},
+		"autoReloadInterval": {
+			"name": "Auto Reload Interval (in Seconds)",
+			"description": "Number of seconds before the preview updates again. Set to `9` to disable.",
+			"type": "float",
+			"default": 10.0,
+			"min": 9.0
+		}
+	},
+	"resources": {
+		"sprites": [
+			"resources/*.png"
+		]
+	},
+	"issues": {
+		"url": "https://discord.com/channels/911701438269386882/1205523212444639292",
+		"info": "Ping me <cl>(@erymanthus)</c> in the Geode SDK Discord server's <cl>#help</c> channel if you need help. <cr>DMs are NOT accepted.</c>"
+	},
+	"links": {
+		"community": "https://discord.gg/WqZBYdBWZW",
+		"homepage": "https://discord.com/channels/822510988409831486/1206371881222144020"
+	}
+}
