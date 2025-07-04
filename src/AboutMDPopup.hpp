@@ -1,13 +1,5 @@
 #pragma once
 
-std::string pathToString(const std::filesystem::path& path) {
-#ifdef GEODE_IS_WINDOWS
-	return utils::string::wideToUtf8(path.wstring());
-#else
-	return path.string();
-#endif
-}
-
 class AboutMDPopup final : public geode::Popup<const std::string&> {
 	const float m_mainContainerPadding   =  20.f;
 	const float m_heightAdjustmentMagic  =  15.f;
@@ -41,4 +33,11 @@ public:
 	void onModSettings(CCObject* sender);
 	void onRefreshPreview(CCObject* sender);
 	void onExit() override;
+	static std::string pathToString(const std::filesystem::path& path) {
+        #ifdef GEODE_IS_WINDOWS
+		return utils::string::wideToUtf8(path.wstring());
+        #else
+		return path.string();
+        #endif
+	}
 };

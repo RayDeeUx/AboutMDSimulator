@@ -21,7 +21,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 	void onAboutMDSimulator(CCObject* sender) {
 		if (!sender || !typeinfo_cast<CCNode*>(sender) || static_cast<CCNode*>(sender)->getID() != "aboutmd-button"_spr) return FLAlertLayer::create("Really now? Sheesh...", "<cy>Click on the button like a normal person.</c>\n\n<c_>Please.</c>", "Aww man :(")->show();
 		if (!std::filesystem::exists(Mod::get()->getSettingValue<std::filesystem::path>("aboutMDFile"))) return FLAlertLayer::create("Oh no!", "The file you specified was not found.\n\n<cy>Try again.</c>", "Aww man :(")->show();
-		if (const std::string& filePath = pathToString(Mod::get()->getSettingValue<std::filesystem::path>("aboutMDFile")); !utils::string::endsWith(filePath, ".md")) return FLAlertLayer::create("Come on already!", "The file you specified was not a Markdown file.\n\n<c_>GET YOUR ACT TOGETHER, FOR CRYING OUT LOUD!</c>", "Aww man :(")->show();
+		if (const std::string& filePath = AboutMDPopup::pathToString(Mod::get()->getSettingValue<std::filesystem::path>("aboutMDFile")); !utils::string::endsWith(filePath, ".md")) return FLAlertLayer::create("Come on already!", "The file you specified was not a Markdown file.\n\n<c_>GET YOUR ACT TOGETHER, FOR CRYING OUT LOUD!</c>", "Aww man :(")->show();
 		AboutMDPopup::create()->show();
 	}
 };
