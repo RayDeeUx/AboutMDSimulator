@@ -49,12 +49,14 @@ bool AboutMDPopup::setup() {
 	m_textArea->setPositionY(m_textArea->getPositionY() - 10.f);
 
 	CCSprite* optionsButtonSprite = CCSprite::createWithSpriteFrameName("GJ_optionsBtn_001.png");
-	optionsButtonSprite->setScale(.75f);
+	optionsButtonSprite->setTag(7042025);
+	optionsButtonSprite->setScale(.750f);
 
 	CCMenuItemSpriteExtra* settingsButton = CCMenuItemSpriteExtra::create(optionsButtonSprite, this, menu_selector(AboutMDPopup::onModSettings));
 	m_buttonMenu->addChild(settingsButton);
 
 	CCSprite* refreshButtonSprite = CCSprite::createWithSpriteFrameName("GJ_getSongInfoBtn_001.png");
+	refreshButtonSprite->setTag(7042025);
 	refreshButtonSprite->setScale(.975f);
 
 	CCMenuItemSpriteExtra* refreshButton = CCMenuItemSpriteExtra::create(refreshButtonSprite, this, menu_selector(AboutMDPopup::onRefreshPreview));
@@ -63,25 +65,22 @@ bool AboutMDPopup::setup() {
 	settingsButton->setPosition({m_closeBtn->getPositionX(), 3.f});
 	refreshButton->setPosition({m_mainLayer->getContentWidth() - 3.f, settingsButton->getPositionY()});
 
-	if (m_autoReloadIntervalInSeconds >= m_hardcodedMinimumRefrsh) this->scheduleUpdate();
+	this->scheduleUpdate();
 
 	return true;
 }
 
 void AboutMDPopup::update(float dt) {
+	if (m_autoReloadIntervalInSeconds < m_hardcodedMinimumRefrsh) return;
 	m_privateFloatVariableForAutoRelod += dt;
 	updateTimer();
-	if (m_privateFloatVariableForAutoRelod < m_autoReloadIntervalInSeconds) return;
-	m_privateFloatVariableForAutoRelod = 0.f;
 
+	if (m_privateFloatVariableForAutoRelod < m_autoReloadIntervalInSeconds) return;
 	updatePreview();
 }
 
 void AboutMDPopup::onRefreshPreview(CCObject* sender) {
-	if (sender && CCScene::get()->getChildByTag(7042025) && CCScene::get()->getChildByID("AboutMDSimulatorPopup"_spr)) {
-		m_privateFloatVariableForAutoRelod = 0.f;
-		updatePreview();
-	}
+	if (sender && sender->getTag() == 7042025 && CCScene::get()->getChildByTag(7042025) && CCScene::get()->getChildByID("AboutMDSimulatorPopup"_spr)) updatePreview();
 }
 
 void AboutMDPopup::updatePreview() {
@@ -92,6 +91,7 @@ void AboutMDPopup::updatePreview() {
 		return m_notifc->show();
 	}
 
+	m_privateFloatVariableForAutoRelod = 0.f;
 	m_autoReloadIntervalInSeconds = Mod::get()->getSettingValue<double>("autoReloadInterval");
 	const std::string& fileContents = file::readString(pathToString(Mod::get()->getSettingValue<std::filesystem::path>("aboutMDFile"))).unwrapOr("fooBar"_spr);
 	if (fileContents == "fooBar"_spr) {
@@ -127,7 +127,7 @@ void AboutMDPopup::onExit() {
 
 void AboutMDPopup::onModSettings(CCObject* sender) {
 	// i don't want any sleazy mfs callbacking this nilly willy
-	if (sender && CCScene::get()->getChildByTag(7042025) && CCScene::get()->getChildByID("AboutMDSimulatorPopup"_spr)) openSettingsPopup(Mod::get());
+	if (sender && sender->getTag() == 7042025 && CCScene::get()->getChildByTag(7042025) && CCScene::get()->getChildByID("AboutMDSimulatorPopup"_spr)) openSettingsPopup(Mod::get());
 }
 
 
