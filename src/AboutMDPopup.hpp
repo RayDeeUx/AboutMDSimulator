@@ -15,9 +15,9 @@ class AboutMDPopup final : public geode::Popup<const std::string&> {
 	/*******************************************/
 	const float m_hardcodedMinimumRefrsh =  10.f;
 	/*******************************************/
-	float m_autoReloadIntervalInSeconds      =   1.f;
-	float m_privateFloatVariableForAutoRelod =   0.f;
-	float m_originalTitleScale               =   0.f;
+	float m_autoReloadIntervalInSeconds      = 1;
+	float m_privateFloatVariableForAutoRelod = 0;
+	float m_originalTitleScale               = 0;
 protected:
 	geode::MDTextArea* m_textArea {};
 	geode::Notification* m_notifc {};

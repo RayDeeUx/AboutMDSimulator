@@ -116,7 +116,7 @@ void AboutMDPopup::updateTitle() {
 }
 
 void AboutMDPopup::updateTimer() {
-	if (m_autoReloadIntervalInSeconds >= m_hardcodedMinimumRefrsh) m_tmr->setString(fmt::format("Next refresh: {:.2f}s", m_autoReloadIntervalInSeconds - m_privateFloatVariableForAutoRelod).c_str());
+	if (m_autoReloadIntervalInSeconds >= m_hardcodedMinimumRefrsh) m_tmr->setString(fmt::format("Next refresh: {:0.0}s", m_autoReloadIntervalInSeconds - m_privateFloatVariableForAutoRelod).c_str());
 	else m_tmr->setString("");
 }
 
