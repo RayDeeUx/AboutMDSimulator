@@ -1,6 +1,6 @@
 #pragma once
 
-class AboutMDPopup final : public geode::Popup<const std::string&> {
+class AboutMDPopup final : public geode::Popup {
 	const float m_mainContainerPadding   =  20.f;
 	const float m_heightAdjustmentMagic  =  15.f;
 	const float m_morHghtAdjustmentMagic =  30.f;
@@ -22,12 +22,11 @@ protected:
 	geode::MDTextArea* m_textArea {};
 	geode::Notification* m_notifc {};
 	cocos2d::CCLabelBMFont* m_tmr {};
-	bool setup(const std::string &) override;
+	bool init() override;
 	void update(float dt) override;
 	void updatePreview();
 	void updateTitle();
 	void updateTimer();
-	bool setup();
 public:
 	static AboutMDPopup* create();
 	void onModSettings(CCObject* sender);

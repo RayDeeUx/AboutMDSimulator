@@ -3,11 +3,9 @@
 
 using namespace geode::prelude;
 
-bool AboutMDPopup::setup(const std::string&) {
-	return AboutMDPopup::setup();
-}
+bool AboutMDPopup::init() {
+	if (!geode::Popup::init(440.f, 280.f, "GJ_square01.png")) return false;
 
-bool AboutMDPopup::setup() {
 	m_notifc = nullptr;
 	const std::filesystem::path mdFile = Mod::get()->getSettingValue<std::filesystem::path>("aboutMDFile");
 	const std::string& filePathString = pathToString(mdFile);
@@ -133,7 +131,7 @@ void AboutMDPopup::onModSettings(CCObject* sender) {
 
 AboutMDPopup* AboutMDPopup::create() {
 	AboutMDPopup* ret = new AboutMDPopup();
-	if (ret->initAnchored(440.f, 280.f, "GJ_square01.png")) {
+	if (ret->init())) {
 		ret->autorelease();
 		return ret;
 	}
