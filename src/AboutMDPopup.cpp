@@ -131,7 +131,7 @@ void AboutMDPopup::onModSettings(CCObject* sender) {
 
 AboutMDPopup* AboutMDPopup::create() {
 	AboutMDPopup* ret = new AboutMDPopup();
-	if (ret->init())) {
+	if (ret->init()) {
 		ret->autorelease();
 		return ret;
 	}
